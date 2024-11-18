@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Answers for "<%= @question.title %>"</h1>
+
+  <%= link_to 'Add an Answer', new_course_lesson_forum_question_answer_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum, @question), class: 'btn btn-success mb-3' %>
+
+  <ul class="list-group">
+    <% @answers.each do |answer| %>
+      <li class="list-group-item">
+        <strong><%= answer.utilizer.full_name %>:</strong> <%= answer.content %>
+        <% if answer.utilizer == current_utilizer %>
+          <%= button_to 'Delete', course_lesson_forum_question_answer_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum, @question, answer), method: :delete, class: 'btn btn-danger btn-sm', data: { turbo_confirm: 'Are you sure?' } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

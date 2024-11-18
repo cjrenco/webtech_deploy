@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Courses</h1>
+
+  <%= link_to 'New Course', new_course_path, class: 'btn btn-success mb-3' %>
+
+  <% @courses.each do |course| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= course.name %></h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Written by: <%= course.teacher.full_name %></h6>
+        
+        <!-- Progress Indicator -->
+        <% progress = course.completion_percentage(current_utilizer) %>
+        <p><strong>Progress:</strong> <%= progress %>%</p>
+        <div class="progress mb-3">
+          <div class="progress-bar" role="progressbar" style="width: <%= progress %>%;" aria-valuenow="<%= progress %>" aria-valuemin="0" aria-valuemax="100">
+            <%= progress %>% Complete
+          </div>
+        </div>
+
+        <!-- View Button -->
+        <a href="#" class="card-link"><%= link_to "Click to see course", course_path(course) %></a>
+        
+        <!-- Edit Button -->
+        <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-primary btn-sm' %>
+        
+        <!-- Delete Button -->
+        <%= button_to 'Delete', course_path(course), method: :delete, class: 'btn btn-danger btn-sm', data: { turbo_confirm: 'Are you sure?' } %>
+        
+      </div>
+    </div>
+  <% end %>
+</div>

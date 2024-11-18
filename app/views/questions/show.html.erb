@@ -1,0 +1,25 @@
+<div class="container">
+  <h1><%= @question.title %></h1>
+  <p>By <%= @question.utilizer.full_name %></p>
+  <p><%= @question.content %></p>
+
+  <h3>Answers:</h3>
+  <ul class="list-group">
+    <% @question.answers.each do |answer| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong><%= answer.utilizer.full_name %>:</strong> <%= answer.content %>
+        </div>
+        <% if answer.utilizer == current_utilizer %>
+          <div>
+            <%= link_to 'Edit', edit_course_lesson_forum_question_answer_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum, @question, answer), class: 'btn btn-primary btn-sm' %>
+            <%= button_to 'Delete', course_lesson_forum_question_answer_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum, @question, answer), method: :delete, class: 'btn btn-danger btn-sm', data: { turbo_confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Add an Answer', new_course_lesson_forum_question_answer_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum, @question), class: 'btn btn-success mt-3' %>
+  <%= link_to 'Back to Questions', course_lesson_forum_questions_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum), class: 'btn btn-secondary mt-3' %>
+</div>

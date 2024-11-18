@@ -1,0 +1,23 @@
+<div class="container mt-5 text-center">
+  <h1>Webtech Project</h1>
+  <h2>Udemy Inspired Webpage</h2>
+  <h6>by Jose Ignacio Costa and Carlos Rencoret</h6>
+</div>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Latest Courses</h2>
+  
+  <div class="row">
+    <% @latest_courses.each do |course| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= course.name %></h5> <!-- Nombre del curso -->
+            <p class="card-text">Teacher: <%= course.teacher.full_name %></p> <!-- Nombre del profesor -->
+            <a href="<%= course_path(course) %>" class="btn btn-primary">View Course</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "mt-5" }) do |f| %>
+  <div class="card shadow-sm p-4">
+    <h2 class="mb-4">Update Account</h2>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :current_password, class: "form-label" %>
+      <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+      <%= f.hidden_field :current_password, value: "" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password, class: "form-label" %>
+      <small class="form-text text-muted">(leave blank if you don't want to change it)</small>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control mt-1" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password_confirmation, class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Edit Question</h1>
+
+  <%= form_with(model: @question, url: course_lesson_forum_question_path(@forum.lesson.course, @forum.lesson, @forum, @question), local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: 'form-control', value: @question.title %>
+    </div>
+    <div class="form-group">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: 'form-control', value: @question.content %>
+    </div>
+    <%= form.submit 'Update Question', class: 'btn btn-primary' %>
+  <% end %>
+
+  <%= link_to 'Back to Questions', course_lesson_forum_questions_path(@forum.lesson.course, @forum.lesson, @forum), class: 'btn btn-secondary' %>
+</div>

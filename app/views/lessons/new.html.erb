@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>New Lesson</h1>
+  <%= form_with model: [@course, @lesson], local: true do |form| %> <!-- Use nested resources -->
+    <% if @lesson.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+        <ul>
+          <% @lesson.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :course_id %>
+      <%= form.select :course_id, Course.all.collect { |c| [c.name, c.id] }, {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Create Lesson", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>New Question</h1>
+
+  <%= form_with(model: @question, url: course_lesson_forum_questions_path(@forum.lesson.course, @forum.lesson, @forum), local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: 'form-control' %>
+    </div>
+    <%= form.submit 'Create Question', class: 'btn btn-primary' %>
+  <% end %>
+
+  <%= link_to 'Back to Questions', course_lesson_forum_questions_path(@forum.lesson.course, @forum.lesson, @forum), class: 'btn btn-secondary' %>
+</div>

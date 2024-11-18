@@ -1,0 +1,2 @@
+module LessonCompletionsHelper
+end

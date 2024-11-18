@@ -1,0 +1,33 @@
+<div class="container">
+  <article class="blog-post">
+
+    <h2 class="display-5 link-body-emphasis mb-1"><%= @forum.title %></h2>
+    <p class="blog-post-meta"><%= @forum.created_at %> by <%= @forum.lesson.course.teacher.full_name %></p>
+    
+    <h2>Questions:</h2>
+
+    <ul>
+      <% @questions.each do |question| %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"> "<%= question.title %>" by <%= question.utilizer.full_name %> </h5>
+            <p class="card-text"><%= question.content %></p>
+            <%= link_to 'Show', course_lesson_forum_question_path(@forum.lesson.course, @forum.lesson, @forum, question), class: 'btn btn-info' %>
+            <%= link_to 'Edit', edit_course_lesson_forum_question_path(@forum.lesson.course, @forum.lesson, @forum, question), class: 'btn btn-primary' %>
+            <%= link_to 'Delete', course_lesson_forum_question_path(@forum.lesson.course, @forum.lesson, @forum, question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <% question.answers.each do |answer| %>
+              <li class="list-group-item"> <%= answer.utilizer.full_name %>: <%= answer.content %> </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </ul>
+
+    <!-- Link to new question -->
+    <h3><%= link_to 'Add a Question', new_course_lesson_forum_question_path(@forum.lesson.course, @forum.lesson, @forum), class: 'btn btn-success' %></h3>
+
+  </article>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Lessons</h1>
+
+  <%= link_to 'New Lesson', new_course_lesson_path(@course), class: 'btn btn-success mb-3' %>
+
+  <% @lessons.each do |lesson| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= lesson.title %></h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Written by: <%= lesson.course.teacher.full_name %></h6>
+
+        <!-- Completion Status -->
+        <% if current_utilizer.completed_lessons.include?(lesson) %>
+          <p class="badge bg-success">Completed</p>
+          <%= button_to 'Mark as Incomplete', course_lesson_lesson_completion_path(lesson.course, lesson), method: :delete, class: 'btn btn-warning btn-sm' %>
+        <% else %>
+          <p class="badge bg-secondary">Incomplete</p>
+          <%= button_to 'Mark as Complete', course_lesson_lesson_completions_path(lesson.course, lesson), method: :post, class: 'btn btn-success btn-sm' %>
+        <% end %>
+
+        <!-- View Button -->
+        <%= link_to "Click to see lesson", course_lesson_path(lesson.course, lesson), class: 'card-link' %>
+
+        <!-- Edit Button -->
+        <%= link_to 'Edit', edit_course_lesson_path(lesson.course, lesson), class: 'btn btn-primary btn-sm' %>
+
+        <!-- Delete Button -->
+        <%= button_to 'Delete', course_lesson_path(lesson.course, lesson), method: :delete, class: 'btn btn-danger btn-sm', data: { turbo_confirm: 'Are you sure you want to delete this lesson?' } %>
+      </div>
+    </div>
+  <% end %>
+</div>

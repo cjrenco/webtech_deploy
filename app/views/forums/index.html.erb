@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1>Forums for Lesson: <%= @lesson.title %></h1>
+
+      <%= link_to 'New Forum', new_course_lesson_forum_path(@course, @lesson), class: 'btn btn-success mb-3' %>
+
+      <% @forums.each do |forum| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= forum.title %></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Written by: <%= forum.lesson.course.teacher.full_name %></h6>
+            
+            <%= link_to "Click to see forum", course_lesson_forum_path(@course, @lesson, forum), class: 'card-link' %>
+            
+            <!-- Edit Button -->
+            <%= link_to 'Edit', edit_course_lesson_forum_path(@course, @lesson, forum), class: 'btn btn-primary btn-sm' %>
+            
+            <!-- Delete Button -->
+            <%= button_to 'Delete', course_lesson_forum_path(@course, @lesson, forum), method: :delete , class: 'btn btn-danger btn-sm' , data: {turbo_confirm: 'Are you sure?'}  %>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: one
+  user: one
+  content: MyText
+  date: 2024-09-25 18:10:07
+
+two:
+  question: two
+  user: two
+  content: MyText
+  date: 2024-09-25 18:10:07

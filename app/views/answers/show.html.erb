@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Answer Details</h1>
+  <strong><%= @answer.utilizer.full_name %>:</strong>
+  <p><%= @answer.body %></p>
+
+  <%= link_to 'Back to Answers', course_lesson_forum_question_answers_path(@question.forum.lesson.course, @question.forum.lesson, @question.forum, @question), class: 'btn btn-secondary' %>
+</div>
